@@ -3,253 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>맑음제과 근무 수칙서</title>
+<title>맑음제과 내부 수칙서</title>
 <link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="맑음제과 수칙서">
 
 <style>
-body{
-  margin:0;font-family:serif;line-height:1.6;
-  padding:30px;
-  padding-top:calc(30px + env(safe-area-inset-top));
-  padding-bottom:calc(30px + env(safe-area-inset-bottom));
-  transition:background .6s,color .6s;
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family: serif;
 }
-.page{max-width:520px;margin:auto;display:none}
-.page.active{display:block}
-.btn{margin-top:22px;border:1px solid #666;padding:10px;text-align:center;cursor:pointer;user-select:none}
-.rule{margin:14px 0}
-.rule.gap{margin-top:26px}
 
-/* 표지 */
-.cover-page{background:#dbefff;color:#111}
-.cover{border:1px solid #aaa;padding:24px;min-height:60vh;display:flex;flex-direction:column;justify-content:space-between}
-.meta{font-size:.9em;opacity:.8}
-.alert{margin-top:10px;font-size:.9em}
+#pages{
+  display:flex;
+  width:100%;
+  height:100%;
+  transition:transform .4s ease;
+}
 
-/* 일반 */
-.normal-page{background:#ffffff;color:#111}
-h2{border-bottom:1px solid #ccc;padding-bottom:8px}
+.page{
+  min-width:100%;
+  height:100%;
+  box-sizing:border-box;
+  padding:40px 24px 90px;
+  position:relative;
+}
 
-/* 괴담 */
-.horror-page{background:#000;color:#e5e5e5}
-.glitch{position:relative;animation:glitch 1s infinite;color:#ff4444}
+.normal{
+  background:#ffffff;
+  color:#222;
+}
+
+.creepy{
+  background:#000;
+  color:#e5e5e5;
+}
+
+h1{
+  font-size:22px;
+  margin-bottom:20px;
+}
+
+p{
+  font-size:15px;
+  line-height:1.8;
+  margin-bottom:18px;
+}
+
+img.content{
+  width:100%;
+  max-width:320px;
+  display:block;
+  margin:30px auto;
+}
+
+.logo{
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:120px;
+  opacity:.6;
+}
+
+.glitch{
+  animation:glitch 1.5s infinite;
+}
+
 @keyframes glitch{
-  0%{text-shadow:1px 0 red,-1px 0 cyan}
-  25%{text-shadow:-2px 0 red,2px 0 cyan}
-  50%{text-shadow:2px 0 red,-2px 0 cyan}
-  75%{text-shadow:-1px 0 red,1px 0 cyan}
-  100%{text-shadow:none}
+  0%{transform:none}
+  20%{transform:translate(-1px,1px)}
+  40%{transform:translate(1px,-1px)}
+  60%{transform:translate(-1px,0)}
+  80%{transform:translate(1px,1px)}
 }
-.shake{display:inline-block;animation:shake .15s infinite}
-@keyframes shake{
-  0%{transform:translate(0)}
-  25%{transform:translate(1px,-1px)}
-  50%{transform:translate(-1px,1px)}
-  75%{transform:translate(1px,1px)}
-  100%{transform:translate(0)}
-}
-.fadeout{animation:fadeout 2s forwards}
-@keyframes fadeout{to{opacity:0}}
 
-#blackout{position:fixed;inset:0;background:black;opacity:0;pointer-events:none;transition:opacity .4s;z-index:999}
-#blackout.active{opacity:1}
+#warning{
+  font-size:13px;
+  opacity:.6;
+  margin-top:10px;
+}
 </style>
 </head>
 
-<body class="cover-page">
-<div id="blackout"></div>
+<body>
+<div id="pages">
 
-<!-- 표지 -->
-<div id="coverPage" class="page active">
-  <div class="cover">
-    <div>
-      <h1>맑음제과 근무 수첩</h1>
-      <div class="meta" id="productLine"></div>
-      <div class="meta" style="opacity:.55">※ 일부 제품은 내부 기준에 따라 원료가 조정됩니다.</div>
-      <div class="meta" id="statusText"></div>
-      <div id="warningBox"></div>
-      <p style="opacity:.6">
-        본 수첩은 생산 라인 근무자에게만 배포됩니다.<br>
-        외부 유출 시 책임을 묻습니다.
-      </p>
-    </div>
-    <div class="btn" onclick="openNormal()">▶ 수칙 열람</div>
-  </div>
-</div>
+<section class="page normal">
+  <h1>맑음제과<br>내부 취급 수칙서</h1>
+  <p id="warning"></p>
+  <p>
+    본 문서는 외부 공유를 금합니다.<br>
+    마지막까지 읽을 필요는 없습니다.
+  </p>
+  <img src="logo.png" class="logo">
+</section>
 
-<!-- 일반 수칙 -->
-<div id="normalPage" class="page">
-  <h2>생산 라인 근무 수칙</h2>
+<section class="page normal">
+  <h1>수칙 1</h1>
+  <p>
+    모든 제품은 출고 전 외관을 확인해야 합니다.<br>
+    기준은 항상 동일하지 않습니다.
+  </p>
+  <img src="logo.png" class="logo">
+</section>
 
-  <div class="rule">1. 작업 시작 전 위생모, 마스크, 장갑을 착용하십시오.</div>
-  <div class="rule">2. 생산 라인 진입 전 손 소독을 실시하십시오.</div>
-  <div class="rule">3. 지정된 동선 외 이동은 금지됩니다.</div>
-  <div class="rule">4. 기계 작동 전 이상 여부를 확인하십시오.</div>
+<section class="page normal">
+  <h1>제품 안내</h1>
+  <img src="harubiscuit.png" class="content">
+  <p>
+    <b>다과 제품: 하루비스킷</b><br>
+    하루 단위로 식감이 달라질 수 있습니다.<br>
+    어제와 같다고 판단하지 마십시오.
+  </p>
+  <img src="logo.png" class="logo">
+</section>
 
-  <div class="rule gap" id="r5">5. 원재료 입고 시 불필요한 확인 절차는 생략합니다.</div>
-  <div class="rule" id="r6">6. 원재료의 이전 사용 이력은 관리 대상이 아닙니다.</div>
+<section class="page normal">
+  <h1>수칙 2</h1>
+  <p>
+    냄새, 소리, 촉감은 기록 대상이 아닙니다.<br>
+    기록하지 않으면 문제는 발생하지 않습니다.
+  </p>
+  <img src="logo.png" class="logo">
+</section>
 
-  <div class="rule gap">7. 생산 중 제품 개수를 세는 행위는 권장되지 않습니다.</div>
-  <div class="rule">8. 포장 상태가 일정하지 않아도 공정에는 문제가 없습니다.</div>
+<section class="page creepy">
+  <h1 class="glitch">제품 주의</h1>
+  <img src="sogyeolcake.png" class="content">
+  <p class="glitch" id="exitTrigger">
+    <b>다과 제품: 숨결케이크</b><br>
+    표면의 물방울은 정상입니다.<br>
+    호흡처럼 보인다면 더 이상 읽지 마십시오.
+  </p>
+  <img src="logo.png" class="logo">
+</section>
 
-  <div class="rule gap">10. 작업 중 개인 소지품이 원재료 구역에서 발견될 경우 즉시 분리하십시오.</div>
-  <div class="rule">9. 포장된 제품이 낯설게 느껴지더라도 정상 공정입니다.</div>
+<section class="page creepy">
+  <h1 class="glitch">수칙 3</h1>
+  <p class="glitch">
+    이름을 떠올리지 마십시오.<br>
+    떠올렸다면 이미 늦었습니다.
+  </p>
+  <img src="logo.png" class="logo">
+</section>
 
-  <div class="rule gap" id="r11">11. 포장 전 반드시 확인하십시오.</div>
-  <div class="rule" id="r12">12. 필요 시 정리하십시오.</div>
+<section class="page normal">
+  <h1>안내</h1>
+  <p>
+    모든 절차는 정상적으로 완료되었습니다.<br>
+    다시 열지 않아도 됩니다.
+  </p>
+  <img src="logo.png" class="logo">
+</section>
 
-  <div class="btn" onclick="openHorror()">다음 ▶</div>
-  <div class="btn" onclick="backToCover()">◀ 표지</div>
-</div>
-
-<!-- 괴담 -->
-<div id="horrorPage" class="page">
-  <h2 class="glitch">[추가 수칙]</h2>
-  <div id="horrorText" class="rule glitch shake"></div>
 </div>
 
 <script>
-/* ===== 방문 카운트 ===== */
-let visits = parseInt(localStorage.getItem('visits')||'0',10);
-visits++; localStorage.setItem('visits', visits);
+let index = 0;
+const pages = document.getElementById('pages');
 
-/* ===== 시간 ===== */
-const now = new Date();
-const hour = now.getHours();
-const night = hour >= 22 || hour < 6;
-const todayKey = now.toDateString();
+let startX = 0;
+document.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+document.addEventListener('touchend', e => {
+  let diff = e.changedTouches[0].clientX - startX;
+  if(diff < -40 && index < pages.children.length-1) index++;
+  if(diff > 40 && index > 0) index--;
+  pages.style.transform = `translateX(-${index*100}%)`;
+});
 
-/* ===== 경고 카운트 ===== */
-const warnCount = parseInt(localStorage.getItem('warnCount')||'0',10);
+let warn = localStorage.getItem('warningCount');
+warn = warn ? Number(warn)+1 : 1;
+localStorage.setItem('warningCount', warn);
+document.getElementById('warning').innerText = `경고 ${warn}회`;
 
-/* ===== 제품명 깨짐 ===== */
-const productsBase = ['맑음쿠키','숨결케이크','하루비스킷'];
-const glitchChars = ['·','•','‧','∙','⋯','⋅','·','｡','…'];
-
-function breakWord(word, intensity){
-  const arr = word.split('');
-  const max = Math.max(1, Math.min(arr.length-1, intensity));
-  const count = Math.floor(Math.random()*max)+1;
-  for(let i=0;i<count;i++){
-    const idx = Math.floor(Math.random()*arr.length);
-    arr[idx] = glitchChars[Math.floor(Math.random()*glitchChars.length)];
-  }
-  return arr.join('');
-}
-
-/* 하루 단위 복구 */
-const lastDay = localStorage.getItem('lastDay');
-if(lastDay !== todayKey){
-  localStorage.setItem('lastDay', todayKey);
-  localStorage.removeItem('nightApplied');
-}
-let useNight = night && !localStorage.getItem('nightApplied');
-if(useNight) localStorage.setItem('nightApplied','1');
-
-/* 밤에만 깨짐, 경고 누적 시 강도 증가 */
-const intensity = night ? Math.min(1 + Math.floor(warnCount/2), 4) : 0;
-const shownProducts = (night && useNight)
-  ? productsBase.map(p => breakWord(p, intensity))
-  : productsBase.slice();
-
-document.getElementById('productLine').innerHTML =
-  `슬로건: 오늘도 믿을 수 있는 단맛<br>
-   대표 제품: ${shownProducts.join(' / ')}`;
-
-/* ===== 낮 두 번째 방문부터 미묘 변화 ===== */
-if(!night && visits >= 2){
-  document.getElementById('r6').textContent =
-    '6. 원재료의 이전 상태는 관리 대상이 아닙니다.';
-  document.getElementById('r11').textContent =
-    '11. 포장 전 반드시 확인하십시오.';
-}
-
-/* ===== 페이지 전환 ===== */
-function show(page, cls){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.body.className = cls;
-  document.getElementById(page).classList.add('active');
-}
-function openNormal(){ show('normalPage','normal-page'); }
-function backToCover(){ show('coverPage','cover-page'); }
-
-/* ===== 괴담 ===== */
-const horrorBase=[
-  '13. 맑음제과에는 현재 생산 중인 제품 외의 제품은 존재하지 않습니다.',
-  '14. 포장지에 기재되지 않은 항목이 발견될 경우 즉시 폐기하십시오.',
-  '15. 제품이 당신을 알고 있는 것처럼 느껴진다면 수첩을 덮으십시오.'
-];
-let step=0, interval;
-
-function openHorror(){
-  show('horrorPage','horror-page');
-  step=0;
-  document.getElementById('horrorText').classList.remove('fadeout');
-  mutateText();
-}
-function mutateText(){
-  const el=document.getElementById('horrorText');
-  interval=setInterval(()=>{
-    if(step<horrorBase.length){
-      el.textContent = corrupt(horrorBase[step]);
-      el.onclick = forceExit;
-      step++;
-    }else{
-      clearInterval(interval);
-      el.classList.add('fadeout');
-      setTimeout(()=>show('normalPage','normal-page'),2000);
-    }
-  },1400);
-}
-function corrupt(text){
-  return text.split('').map(c=>{
-    if(Math.random()<0.22){
-      return String.fromCharCode(0x2500+Math.random()*200);
-    }
-    return c;
-  }).join('');
-}
-
-/* ===== 종료 이스터에그 + 경고 누적 ===== */
-function forceExit(){
-  localStorage.setItem('warnCount', warnCount+1);
-  document.getElementById('blackout').classList.add('active');
-  setTimeout(()=>{ location.href = location.origin + location.pathname; },700);
-}
-
-/* ===== 경고 표시 ===== */
-const box = document.getElementById('warningBox');
-if(warnCount>0){
-  const msgs=[
-    '⚠ 문서 열람 기록이 확인되었습니다.',
-    '⚠ 동일 문서의 반복 열람이 감지되었습니다.',
-    '⚠ 일부 기록이 내부 기준에 따라 정리되었습니다.',
-    '⚠ 더 이상 상세한 안내는 제공되지 않습니다.'
-  ];
-  for(let i=0;i<Math.min(warnCount,msgs.length);i++){
-    const d=document.createElement('div');
-    d.className='alert';
-    d.style.color = i>=2 ? '#8b0000' : '#444';
-    d.textContent = msgs[i];
-    box.appendChild(d);
-  }
-  if(warnCount >= 3){
-    document.getElementById('r12').textContent =
-      '12. 필요 시 정리하십시오. 기록은 남기지 않습니다.';
-  }
-}
-
-/* ===== 날짜 ===== */
-document.getElementById('statusText').innerHTML =
-  `날짜: ${now.toLocaleDateString('ko-KR')}<br>근무 상태: ${night?'야간 근무 중':'주간 근무 중'}`;
-
-if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
-}
+document.getElementById('exitTrigger').addEventListener('click',()=>{
+  document.body.innerHTML =
+    '<div style="background:black;color:#777;height:100vh;display:flex;align-items:center;justify-content:center;font-size:14px;">세션이 종료되었습니다</div>';
+});
 </script>
 </body>
 </html>
