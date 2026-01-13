@@ -168,6 +168,14 @@ img.content{
 <img src="harubiscuit.png" class="content">
 <p id="harubiText"></p>
 </section>
+
+<section class="page normal">
+<h1>제품 안내</h1>
+<p>다과 제품: 잔여사탕</p>
+<p>개별 포장으로 제공됩니다.</p>
+<p>맛과 향은 명시되어 있지 않습니다.</p>
+<p>제조 목적은 내부 기록에서 제외되었습니다.</p>
+</section>
   
 <section class="page normal">
 <h1>제품 주의</h1>
@@ -175,6 +183,20 @@ img.content{
 <p>하루 단위로 상태가 변할 수 있습니다.</p>
 <p>질감과 무게가 달라질 수 있습니다.</p>
 <p>즉시 보고 대상은 아닙니다.</p>
+</section>
+
+<section class="page normal" id="candyPage">
+<h1 data-text="제품 주의">제품 주의</h1>
+<p data-text="다과 제품: 잔여사탕">다과 제품: 잔여사탕</p>
+<p data-text="포장 안의 수량은 일정하지 않을 수 있습니다.">
+포장 안의 수량은 일정하지 않을 수 있습니다.
+</p>
+<p data-text="섭취 후에도 남아 있을 수 있습니다.">
+섭취 후에도 남아 있을 수 있습니다.
+</p>
+<p data-text="남은 것은 폐기하지 않아도 됩니다.">
+남은 것은 폐기하지 않아도 됩니다.
+</p>
 </section>
 
 <section class="page" id="cakePage">
@@ -244,6 +266,26 @@ if(cake){
       e.classList.remove('mid');
       e.classList.add('high');
       e.innerText=corrupt(e.innerText);
+    });
+  }
+}
+
+const candy = document.getElementById('candyPage');
+if(candy){
+  const texts = candy.querySelectorAll('h1,p');
+
+  if(warn >= 7){
+    texts.forEach(e=>{
+      e.classList.add('glitch','mid');
+      if(!e.dataset.text) e.dataset.text = e.innerText;
+    });
+  }
+
+  if(warn >= 10){
+    texts.forEach(e=>{
+      e.classList.remove('mid');
+      e.classList.add('high');
+      e.innerText = corrupt(e.dataset.text);
     });
   }
 }
