@@ -248,6 +248,37 @@ if(cake){
   }
 }
 
+function make404(type){
+  const s=document.createElement('section');
+  s.className='page error';
+  if(type==='normal'){
+    s.innerHTML='<h1>404 NOT FOUND</h1><p>요청하신 페이지를 찾을 수 없습니다.</p>';
+  }
+  if(type==='corrupt'){
+    s.innerHTML='<h1 data-text="ERR_404_EAT">기록 일련번호: #ERR_404_EAT</h1><p>로그 손상 감지<br>이전 작업자: 미확인<br>도망가십시오.</p>';
+    s.querySelectorAll('h1,p').forEach(e=>{
+      e.classList.add('glitch','mid');
+      e.dataset.text=e.innerText;
+    });
+  }
+  if(type==='warning'){
+    s.innerHTML='<h1 data-text="전임자 기록">전임자 기록</h1><p>도망가<br>도망가<br>읽지 마<br>이미 늦었다</p>';
+    s.querySelectorAll('h1,p').forEach(e=>{
+      e.classList.add('glitch','high');
+      e.dataset.text=e.innerText;
+      e.innerText=corrupt(e.innerText);
+    });
+  }
+  return s;
+}
+
+if(warn>=5&&warn<=10){
+  let t='normal';
+  if(warn>=8) t='corrupt';
+  if(warn>=10) t='warning';
+  pages.appendChild(make404(t));
+}
+
 if(warn>=11){
   document.body.style.background='#000';
   const chaos=document.createElement('div');
