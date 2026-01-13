@@ -3,148 +3,233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>나폴리탄 수칙서</title>
+<title>맑음제과 근무 수칙서</title>
 <link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="수칙서">
+<meta name="apple-mobile-web-app-title" content="맑음제과 수칙서">
+
 <style>
 body{
   margin:0;
-  background:black;
-  color:#dcdcdc;
   font-family:serif;
   line-height:1.6;
   padding:30px;
   padding-top:calc(30px + env(safe-area-inset-top));
   padding-bottom:calc(30px + env(safe-area-inset-bottom));
+  transition:background .6s,color .6s;
 }
 .page{max-width:500px;margin:auto;display:none}
 .page.active{display:block}
+.btn{
+  margin-top:24px;
+  border:1px solid #666;
+  padding:10px;
+  text-align:center;
+  cursor:pointer;
+  user-select:none
+}
+.rule{margin:14px 0}
+
+/* 표지 */
+.cover-page{background:#dbefff;color:#111}
 .cover{
-  border:1px solid #333;
+  border:1px solid #aaa;
   padding:24px;
   min-height:60vh;
   display:flex;
   flex-direction:column;
   justify-content:space-between
 }
-.meta{font-size:.9em;opacity:.85}
-.warning{font-size:.85em;opacity:.6;margin-top:20px}
-.btn{
-  margin-top:24px;
-  border:1px solid #555;
-  padding:10px;
-  text-align:center;
-  cursor:pointer;
-  user-select:none
+.meta{font-size:.9em;opacity:.8}
+.alert{
+  margin-top:12px;
+  font-size:.9em;
 }
-.btn:hover{background:#111}
-h2{border-bottom:1px solid #444;padding-bottom:10px;font-size:1.3em}
-.rule{margin:16px 0;cursor:pointer}
-.read{color:#ff5555}
-.locked{opacity:.3}
-.flash{animation:flash .2s alternate 3}
-@keyframes flash{from{background:black}to{background:#220000}}
-.fade{animation:fade .6s}
-@keyframes fade{from{opacity:0}to{opacity:1}}
+
+/* 일반 */
+.normal-page{background:#fff;color:#111}
+h2{border-bottom:1px solid #ccc;padding-bottom:8px}
+
+/* 괴담 */
+.horror-page{background:#000;color:#e5e5e5}
+.glitch{
+  position:relative;
+  animation:glitch 1s infinite;
+  color:#ff4444
+}
+@keyframes glitch{
+  0%{text-shadow:1px 0 red,-1px 0 cyan}
+  25%{text-shadow:-2px 0 red,2px 0 cyan}
+  50%{text-shadow:2px 0 red,-2px 0 cyan}
+  75%{text-shadow:-1px 0 red,1px 0 cyan}
+  100%{text-shadow:none}
+}
+.shake{display:inline-block;animation:shake .15s infinite}
+@keyframes shake{
+  0%{transform:translate(0)}
+  25%{transform:translate(1px,-1px)}
+  50%{transform:translate(-1px,1px)}
+  75%{transform:translate(1px,1px)}
+  100%{transform:translate(0)}
+}
+.fadeout{animation:fadeout 2s forwards}
+@keyframes fadeout{to{opacity:0}}
+
+#blackout{
+  position:fixed;
+  inset:0;
+  background:black;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .4s;
+  z-index:999;
+}
+#blackout.active{opacity:1}
 </style>
 </head>
-<body>
 
-<div id="coverPage" class="page active fade">
+<body class="cover-page">
+
+<div id="blackout"></div>
+
+<!-- 표지 -->
+<div id="coverPage" class="page active">
   <div class="cover">
     <div>
-      <h1>XX터널 근무 수첩</h1>
-      <div class="meta" id="statusText"></div>
-      <div class="warning">
-        본 수첩은 근무 중에만 열람하십시오.<br>
-        분실 시 즉시 보고할 것.
+      <h1>맑음제과 근무 수첩</h1>
+      <div class="meta">
+        슬로건: 오늘도 믿을 수 있는 단맛<br>
+        대표 제품: 맑음쿠키 / 숨결케이크 / 하루비스킷
       </div>
+      <div class="meta" id="statusText"></div>
+
+      <div id="warningBox"></div>
+
+      <p style="opacity:.6">
+        본 수첩은 생산 라인 근무자에게만 배포됩니다.<br>
+        외부 유출 시 책임을 묻습니다.
+      </p>
     </div>
-    <div class="btn" onclick="openRules()">▶ 수칙 열람</div>
+    <div class="btn" onclick="openNormal()">▶ 수칙 열람</div>
   </div>
 </div>
 
-<div id="rulesPage" class="page fade">
-  <h2>[기밀] 작업자 수칙</h2>
+<!-- 일반 수칙 -->
+<div id="normalPage" class="page">
+  <h2>생산 라인 근무 수칙</h2>
 
-  <div class="rule" onclick="readRule(0)">
-    1. 터널 내에서 휘파람 소리가 들리면 즉시 귀를 막으십시오.
-  </div>
+  <div class="rule">1. 작업 시작 전 위생모, 마스크, 장갑을 착용하십시오.</div>
+  <div class="rule">2. 생산 라인 진입 전 손 소독을 실시하십시오.</div>
+  <div class="rule">3. 지정된 동선 외 이동은 금지됩니다.</div>
+  <div class="rule">4. 기계 작동 전 이상 여부를 확인하십시오.</div>
+  <div class="rule">5. 원재료 보관 구역에는 허가된 인원만 출입할 수 있습니다.</div>
 
-  <div class="rule" onclick="readRule(1)">
-    2. 작업 중 동료가 이름을 부르더라도 뒤돌아보지 마십시오.
-  </div>
+  <div class="rule">6. 생산 중 제품 개수를 세는 행위는 권장되지 않습니다.</div>
+  <div class="rule">7. 동일한 제품이 반복적으로 보일 경우 잠시 휴식을 취하십시오.</div>
+  <div class="rule">8. 기계음이 일정하지 않아도 보고하지 않아도 됩니다.</div>
 
-  <div class="rule locked" id="nightRule" onclick="readRule(2)">
-    3. 야간 근무 중, 조명이 꺼진 구간에는 들어가지 마십시오.
-  </div>
+  <div class="rule">10. 동료가 라인 반대편에서 손짓하더라도 응답하지 마십시오.</div>
+  <div class="rule">9. 포장된 제품이 스스로 이동한 것처럼 보여도 정상 공정입니다.</div>
+  <div class="rule">11. 근무 중 불필요한 대화는 삼가십시오.</div>
 
-  <div class="rule locked" id="forbiddenRule" onclick="readRule(3)">
-    4. 이 수칙을 읽을 수 있다면 즉시 수첩을 덮으십시오.
-  </div>
+  <div class="btn" onclick="openHorror()">다음 ▶</div>
+  <div class="btn" onclick="backToCover()">◀ 표지</div>
+</div>
 
-  <div class="btn" onclick="prevRule()">◀ 이전</div>
-  <div class="btn" onclick="nextRule()">다음 ▶</div>
-  <div class="btn" onclick="backToCover()">◀ 표지로</div>
+<!-- 괴담 -->
+<div id="horrorPage" class="page">
+  <h2 class="glitch">[추가 수칙]</h2>
+  <div id="horrorText" class="rule glitch shake"></div>
 </div>
 
 <script>
-let currentIndex = 0;
-const rules = document.querySelectorAll('.rule');
-const saved = JSON.parse(localStorage.getItem('readRules')||'[]');
+/* ---------- 기본 상태 ---------- */
+const horrorBase=[
+  '13. 맑음제과에는 현재 생산 중인 제품 외의 제품은 존재하지 않습니다.',
+  '14. 포장지에 인쇄되지 않은 날짜를 발견했다면 즉시 폐기하십시오.',
+  '15. 제품이 당신의 이름을 알고 있는 것처럼 느껴진다면 수첩을 덮으십시오.'
+];
+let step=0,interval;
 
-saved.forEach(i=>rules[i]?.classList.add('read'));
-
-function openRules(){
-  document.body.classList.add('flash');
-  setTimeout(()=>{
-    document.body.classList.remove('flash');
-    showPage('rulesPage');
-    showRule(currentIndex);
-  },600);
-}
-
-function backToCover(){showPage('coverPage')}
-
-function showPage(id){
+/* ---------- 페이지 전환 ---------- */
+function show(page,cls){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  document.body.className=cls;
+  document.getElementById(page).classList.add('active');
+}
+function openNormal(){show('normalPage','normal-page')}
+function backToCover(){show('coverPage','cover-page')}
+
+/* ---------- 괴담 연출 ---------- */
+function openHorror(){
+  show('horrorPage','horror-page');
+  step=0;
+  document.getElementById('horrorText').classList.remove('fadeout');
+  mutateText();
 }
 
-function showRule(i){
-  rules.forEach(r=>r.style.display='none');
-  rules[i].style.display='block';
+function mutateText(){
+  const el=document.getElementById('horrorText');
+  interval=setInterval(()=>{
+    if(step<horrorBase.length){
+      el.textContent=corrupt(horrorBase[step]);
+      el.onclick=forceExit;
+      step++;
+    }else{
+      clearInterval(interval);
+      el.classList.add('fadeout');
+      setTimeout(()=>show('normalPage','normal-page'),2000);
+    }
+  },1400);
 }
 
-function nextRule(){
-  if(currentIndex < rules.length-1){currentIndex++;showRule(currentIndex)}
+function corrupt(text){
+  return text.split('').map(c=>{
+    if(Math.random()<0.25){
+      return String.fromCharCode(0x2500+Math.random()*200);
+    }
+    return c;
+  }).join('');
 }
 
-function prevRule(){
-  if(currentIndex > 0){currentIndex--;showRule(currentIndex)}
+/* ---------- 강제 종료 + 경고 누적 ---------- */
+function forceExit(){
+  let count=parseInt(localStorage.getItem('warnCount')||'0',10);
+  localStorage.setItem('warnCount',count+1);
+  document.getElementById('blackout').classList.add('active');
+  setTimeout(()=>{
+    location.href = location.origin + location.pathname;
+  },700);
 }
 
-function readRule(i){
-  rules[i].classList.add('read');
-  if(!saved.includes(i)){saved.push(i)}
-  localStorage.setItem('readRules',JSON.stringify(saved));
-  if(saved.length>=3){
-    document.getElementById('forbiddenRule').classList.remove('locked');
+/* ---------- 재실행 경고 표시 ---------- */
+const warnCount=parseInt(localStorage.getItem('warnCount')||'0',10);
+const box=document.getElementById('warningBox');
+
+if(warnCount>0){
+  const msgs=[
+    '⚠ 본 수첩은 회수 대상 문서입니다.',
+    '⚠ 반복 열람 기록이 확인되었습니다.',
+    '⚠ 열람 중단 권고를 무시했습니다.',
+    '⚠ 추가 열람 시 책임은 개인에게 귀속됩니다.',
+    '⚠ 더 이상 경고를 제공하지 않습니다.'
+  ];
+  for(let i=0;i<Math.min(warnCount,msgs.length);i++){
+    const d=document.createElement('div');
+    d.className='alert';
+    d.style.color = i>=2 ? '#8b0000' : '#444';
+    d.textContent=msgs[i];
+    box.appendChild(d);
   }
 }
 
+/* ---------- 날짜 / 근무 ---------- */
 const now=new Date();
-const h=now.getHours();
-const night=h>=22||h<6;
+const night=now.getHours()>=22||now.getHours()<6;
 document.getElementById('statusText').innerHTML=
-  `날짜: ${now.toLocaleDateString('ko-KR')}<br>상태: ${night?'야간 근무 중':'주간 근무 중'}`;
-
-if(night){
-  document.getElementById('nightRule').classList.remove('locked');
-}
+  `날짜: ${now.toLocaleDateString('ko-KR')}<br>근무 상태: ${night?'야간 근무 중':'주간 근무 중'}`;
 
 if('serviceWorker'in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
