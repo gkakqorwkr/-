@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>나폴리탄 수칙서</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="수칙서">
+    
+    <style>
+        body { background-color: black; color: #dcdcdc; font-family: serif; padding: 30px; line-height: 1.6; }
+        .glitch { color: red; font-weight: bold; }
+        #game-container { max-width: 500px; margin: auto; }
+        h1 { border-bottom: 1px solid #444; padding-bottom: 10px; font-size: 1.5em; }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>[기밀] XX터널 작업자 수칙</h1>
+        <p>1. 터널 내에서 휘파람 소리가 들리면 즉시 귀를 막으십시오.</p>
+        <p class="glitch">2. 4번 출구는 존재하지 않습니다. 만약 보인다면...</p>
+    </div>
+    <script>
+        // 서비스 워커 등록 (PWA 핵심)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
