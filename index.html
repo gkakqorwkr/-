@@ -3,108 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>맑음제과 내부 수칙서</title>
+<title>맑음제과 내부 취급 수칙서</title>
 <link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 
 <style>
-html,body{
-  margin:0;
-  padding:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  font-family: serif;
-}
-
-#pages{
-  display:flex;
-  width:100%;
-  height:100%;
-  transition:transform .45s ease;
-}
-
-.page{
-  min-width:100%;
-  height:100%;
-  box-sizing:border-box;
-  padding:52px 26px 120px;
-  position:relative;
-}
-
-.normal{
-  background:#ffffff;
-  color:#111;
-}
-
-.creepy{
-  background:#000000;
-  color:#eee;
-}
-
-.tv{
-  background:#000;
-  color:#ccc;
-  animation:tvshake .15s infinite;
-}
-
-@keyframes tvshake{
-  0%{transform:translate(0,0)}
-  25%{transform:translate(-1px,1px)}
-  50%{transform:translate(1px,-1px)}
-  75%{transform:translate(-1px,0)}
-  100%{transform:translate(0,1px)}
-}
-
-h1{
-  font-size:30px;
-  font-weight:800;
-  margin-bottom:26px;
-}
-
-p{
-  font-size:18px;
-  line-height:1.9;
-  margin-bottom:20px;
-}
-
-#warning{
-  font-size:15px;
-  opacity:.6;
-  margin-bottom:24px;
-}
-
-img.content{
-  width:100%;
-  max-width:340px;
-  display:block;
-  margin:36px auto;
-}
-
-.logo-wrap{
-  position:absolute;
-  bottom:28px;
-  left:50%;
-  transform:translateX(-50%);
-}
-
-.logo{
-  width:130px;
-  opacity:.75;
-}
-
-.glitch{
-  animation:glitch 1.3s infinite;
-}
-
-@keyframes glitch{
-  0%{transform:none}
-  20%{transform:translate(-1px,1px)}
-  40%{transform:translate(1px,-1px)}
-  60%{transform:translate(-1px,0)}
-  80%{transform:translate(1px,1px)}
-}
+html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;font-family:serif;}
+#pages{display:flex;width:100%;height:100%;transition:transform .45s ease;}
+.page{min-width:100%;height:100%;box-sizing:border-box;padding:52px 26px 120px;position:relative;}
+.normal{background:#ffffff;color:#111;}
+.creepy{background:#000000;color:#eee;}
+.tv{background:#000;color:#ccc;animation:tvshake .15s infinite;}
+.flash{animation:redflash .1s;}
+@keyframes tvshake{0%{transform:translate(0,0)}25%{transform:translate(-1px,1px)}50%{transform:translate(1px,-1px)}75%{transform:translate(-1px,0)}100%{transform:translate(0,1px)}}
+@keyframes redflash{0%{background:#8b0000}100%{background:inherit}}
+h1{font-size:30px;font-weight:800;margin-bottom:26px;}
+p{font-size:18px;line-height:1.9;margin-bottom:20px;}
+#warning{font-size:15px;opacity:.6;margin-bottom:24px;}
+img.content{width:100%;max-width:340px;display:block;margin:36px auto;}
+.logo-wrap{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);}
+.logo{width:130px;opacity:.75;}
+.glitch{animation:glitch 1.3s infinite;}
+@keyframes glitch{0%{transform:none}20%{transform:translate(-1px,1px)}40%{transform:translate(1px,-1px)}60%{transform:translate(-1px,0)}80%{transform:translate(1px,1px)}}
 </style>
 </head>
 
@@ -114,106 +35,44 @@ img.content{
 <section class="page normal">
   <h1>맑음제과<br>내부 취급 수칙서</h1>
   <div id="warning"></div>
-  <p id="introText">
-    본 문서는 외부 공유를 금합니다.<br>
-    업무 참고용으로만 사용하십시오.
-  </p>
+  <p id="introText">본 문서는 외부 공유를 금합니다.<br>업무 참고용으로만 사용하십시오.</p>
   <div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
-<section class="page normal">
-  <h1>일반 수칙</h1>
-  <p>
-    모든 근무자는 지정된 복장을 착용합니다.<br>
-    복장은 위생 기준을 충족하면 충분합니다.<br>
-    추가 확인은 필요하지 않습니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
-</section>
-
-<section class="page normal">
-  <h1>일반 수칙</h1>
-  <p>
-    작업 공간은 항상 정리된 상태를 유지합니다.<br>
-    정리 기준은 개인의 판단에 따릅니다.<br>
-    불필요한 수정은 권장되지 않습니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
-</section>
-
-<section class="page normal">
-  <h1>일반 수칙</h1>
-  <p>
-    근무 중 발생한 경미한 이상은 보고 대상이 아닙니다.<br>
-    반복되지 않는 한 문제로 간주되지 않습니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
-</section>
-
-<section class="page normal">
-  <h1>기본 수칙</h1>
-  <p>
-    모든 제품은 밀봉 상태로 보관합니다.<br>
-    개봉 시간은 기록하지 않아도 됩니다.<br>
-    기록되지 않은 사항은 발생하지 않은 것으로 처리합니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
-</section>
-
-<section class="page normal">
-  <h1>위생 관리</h1>
-  <p>
-    작업 전 손을 씻는 것을 권장합니다.<br>
-    권장은 의무가 아닙니다.<br>
-    결과는 개인의 판단에 따릅니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
-</section>
+<section class="page normal"><h1>일반 수칙</h1><p>근무 중에는 지정된 복장을 착용합니다.<br>복장은 위생 기준을 충족하면 충분합니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
+<section class="page normal"><h1>일반 수칙</h1><p>지각 및 조퇴는 사유를 기록하지 않아도 됩니다.<br>반복되지 않으면 문제로 간주되지 않습니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
+<section class="page normal"><h1>일반 수칙</h1><p>작업 중 발생한 소음은 대부분 정상입니다.<br>원인을 추적할 필요는 없습니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
+<section class="page normal"><h1>일반 수칙</h1><p>위생 장갑 착용은 권장 사항입니다.<br>미착용으로 인한 결과는 개인 책임입니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
+<section class="page normal"><h1>일반 수칙</h1><p>제품 보관 온도는 계절에 따라 달라질 수 있습니다.<br>수치 확인은 필수가 아닙니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
+<section class="page normal"><h1>일반 수칙</h1><p>기록 누락은 보고 대상이 아닙니다.<br>기억하고 있다면 충분합니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
 
 <section class="page normal">
   <h1>제품 안내</h1>
   <img src="harubiscuit.png" class="content">
-  <p>
-    <b>다과 제품: 하루비스킷</b><br>
-    하루 단위로 상태가 변할 수 있습니다.<br>
-    변화를 느꼈다면 섭취를 중단해도 됩니다.
-  </p>
+  <p><b>다과 제품: 하루비스킷</b><br>하루 단위로 상태가 변할 수 있습니다.<br>변화를 느꼈다면 섭취를 중단해도 됩니다.</p>
   <div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 <section class="page normal">
   <h1>책임</h1>
-  <p>
-    본 문서에 명시되지 않은 상황은<br>
-    회사의 책임 범위에 포함되지 않습니다.
-  </p>
+  <p>본 문서에 명시되지 않은 상황은<br>회사 책임 범위에 포함되지 않습니다.</p>
   <div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 <section class="page creepy">
   <h1 class="glitch">제품 주의</h1>
   <img src="sogyeolcake.png" class="content">
-  <p class="glitch" id="cakeText">
-    <b>다과 제품: 숨결케이크</b><br>
-    표면의 물방울은 정상입니다.<br>
-    소리가 들릴 경우 조명을 끄십시오.
-  </p>
+  <p class="glitch" id="cakeText"><b>다과 제품: 숨결케이크</b><br>표면의 물방울은 정상입니다.<br>소리가 들릴 경우 조명을 끄십시오.</p>
 </section>
 
 <section class="page creepy">
   <h1 class="glitch">수칙</h1>
-  <p class="glitch">
-    이름을 부르지 마십시오.<br>
-    기억하지 않으면 문제되지 않습니다.
-  </p>
+  <p class="glitch">이름을 부르지 마십시오.<br>기억하지 않으면 문제되지 않습니다.</p>
 </section>
 
 <section class="page normal">
   <h1>종료 안내</h1>
-  <p id="endText">
-    모든 절차는 정상적으로 완료되었습니다.<br>
-    다시 확인할 필요는 없습니다.
-  </p>
+  <p id="endText">모든 절차는 정상적으로 완료되었습니다.<br>다시 확인할 필요는 없습니다.</p>
   <div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
@@ -230,18 +89,19 @@ document.addEventListener('touchend',e=>{
   if(diff<-40&&index<pages.children.length-1)index++;
   if(diff>40&&index>0)index--;
   pages.style.transform=`translateX(-${index*100}%)`;
+  if(warn>=7){const p=pages.children[index];if(p.classList.contains('creepy')){p.classList.add('flash');setTimeout(()=>p.classList.remove('flash'),100);}}
 });
 
 let warn=localStorage.getItem('warningCount');
 warn=warn?Number(warn)+1:1;
 localStorage.setItem('warningCount',warn);
-document.getElementById('warning').innerText=`경고 ${warn}회`;
+warning.innerText=`경고 ${warn}회`;
 
 if(warn>=3){
   const tv=document.createElement('section');
   tv.className='page tv';
-  tv.innerHTML='<h1 class="glitch">— 신호 없음 —</h1><p class="glitch">지지직…<br>현재 화면은 정상입니다.<br>다른 채널은 존재하지 않습니다.</p>';
-  pages.insertBefore(tv,pages.children[pages.children.length-1]);
+  tv.innerHTML='<h1 class="glitch">— 신호 없음 —</h1><p class="glitch">지지직…<br>현재 화면은 정상입니다.</p>';
+  pages.insertBefore(tv,pages.children[pages.children.length-3]);
 }
 
 if(warn>=5){
