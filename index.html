@@ -34,9 +34,9 @@ html,body{
 .cake-dark{background:#000;color:#eee;}
 
 h1{font-size:32px;font-weight:800;margin-bottom:28px;}
-.error h1{font-size:22px;}
 p{font-size:19px;line-height:2;margin-bottom:22px;word-break:keep-all;}
-.error p{font-size:15px;line-height:1.9;}
+.error h1{font-size:22px;}
+.error p{font-size:15px;}
 
 #warning{font-size:15px;opacity:.6;margin-bottom:26px;}
 
@@ -56,8 +56,8 @@ img.content{
 }
 
 .glitch{position:relative;}
-.glitch.mid{animation:glitchMid .9s infinite;}
-.glitch.high{animation:glitchHigh .35s infinite;}
+.glitch.mid{animation:glitchMid .8s infinite;}
+.glitch.high{animation:glitchHigh .3s infinite;}
 
 .glitch::before,
 .glitch::after{
@@ -72,46 +72,40 @@ img.content{
 
 @keyframes glitchMid{
   0%{transform:none}
-  20%{transform:translate(-1px,1px)}
-  40%{transform:translate(1px,-1px)}
-  60%{transform:translate(-1px,0)}
-  80%{transform:translate(1px,1px)}
+  25%{transform:translate(-1px,1px)}
+  50%{transform:translate(1px,-1px)}
+  75%{transform:translate(-1px,0)}
   100%{transform:none}
 }
 @keyframes glitchHigh{
   0%{transform:none}
-  15%{transform:translate(-3px,2px)}
-  30%{transform:translate(3px,-2px)}
-  45%{transform:translate(-2px,0)}
-  60%{transform:translate(2px,2px)}
-  75%{transform:translate(-3px,-2px)}
+  20%{transform:translate(-3px,2px)}
+  40%{transform:translate(3px,-2px)}
+  60%{transform:translate(-2px,0)}
+  80%{transform:translate(2px,2px)}
   100%{transform:none}
+}
+
+.chaos{
+  position:fixed;
+  inset:0;
+  background:#000;
+  z-index:9999;
+  pointer-events:none;
+  overflow:hidden;
+}
+.chaos span{
+  position:absolute;
+  white-space:nowrap;
+  color:#fff;
+  opacity:.85;
+  mix-blend-mode:screen;
+  animation:chaosMove linear infinite;
 }
 @keyframes chaosMove{
   from{transform:translate(0,0) rotate(0deg)}
   to{transform:translate(40px,-40px) rotate(5deg)}
 }
-  
-  .chaos{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:9999;
-  overflow:hidden;
-  background:#000;
-}
-
-.chaos span{
-  position:absolute;
-  font-size:18px;
-  line-height:1.2;
-  white-space:nowrap;
-  opacity:.85;
-  color:#fff;
-  animation:chaosMove linear infinite;
-  mix-blend-mode:screen;
-}
-  
 </style>
 </head>
 
@@ -169,46 +163,29 @@ img.content{
 <div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
-<section class="page normal">
-<h1>제품 안내</h1>
-<img src="harubiscuit.png" class="content">
-<p id="harubiText"></p>
-</section>
-
-<section class="page normal">
-<h1>제품 주의</h1>
-<p>다과 제품: 하루비스킷</p>
-<p>하루 단위로 상태가 변할 수 있습니다.</p>
-<p>질감과 무게가 달라질 수 있습니다.</p>
-<p>즉시 보고 대상은 아닙니다.</p>
-</section>
-
 <section class="page" id="cakePage">
 <h1 data-text="제품 주의">제품 주의</h1>
 <img src="sogyeolcake.png" class="content">
 <p data-text="다과 제품: 숨결케이크">다과 제품: 숨결케이크</p>
 <p data-text="표면의 물방울은 정상입니다.">표면의 물방울은 정상입니다.</p>
-<p data-text="호흡과 유사한 소리가 들릴 수 있습니다.">호흡과 유사한 소리가 들릴 수 있습니다.</p>
 <p data-text="조명을 끄고 공간을 비우십시오.">조명을 끄고 공간을 비우십시오.</p>
 </section>
 
 <section class="page normal">
 <h1>종료 안내</h1>
 <p>모든 절차는 정상적으로 완료되었습니다.</p>
-<p>다시 읽지 않아도 됩니다.</p>
 <div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 </div>
 
 <script>
-let index=0;
+let index=0,startX=0;
 const pages=document.getElementById('pages');
-let startX=0;
 
 document.addEventListener('touchstart',e=>startX=e.touches[0].clientX);
 document.addEventListener('touchend',e=>{
-  let d=e.changedTouches[0].clientX-startX;
+  const d=e.changedTouches[0].clientX-startX;
   if(d<-40&&index<pages.children.length-1)index++;
   if(d>40&&index>0)index--;
   pages.style.transform=`translateX(-${index*100}%)`;
@@ -223,24 +200,19 @@ const ruleVariants=[
   '작업 중 발생한 소음은 대부분 정상입니다.',
   '작업 중 발생한 소음은 정상으로 처리됩니다.',
   '작업 중 발생한 소음은 기록 대상이 아닙니다.',
-  '작업 중 발생한 소음은 이미 처리되었습니다.',
   '작업 중 발생한 소음은 존재하지 않았습니다.'
 ];
 ruleShift.innerText=ruleVariants[Math.min(warn-1,ruleVariants.length-1)];
 
 const harubiVariants=[
   '다과 제품: 하루비스킷\n상태 변화는 정상 범위로 간주됩니다.',
-  '다과 제품: 하루비스킷\n질감 변화는 기록하지 않아도 됩니다.',
   '다과 제품: 하루비스킷\n섭취 여부는 개인 판단에 맡깁니다.'
 ];
 harubiText.innerText=harubiVariants[warn%harubiVariants.length];
 
-function corruptText(t){
-  const pool='뷁쉚뎛갿됵괡훍믃궳렢쬻삷텱';
-  return t.split('').map(c=>{
-    if(Math.random()<0.45) return pool[Math.floor(Math.random()*pool.length)];
-    return c;
-  }).join('');
+function corrupt(t){
+  const p='뷁쉚뎛갿됵괡훍믃궳렢쬻삷텱';
+  return t.split('').map(c=>Math.random()<0.45?p[Math.floor(Math.random()*p.length)]:c).join('');
 }
 
 const cake=document.getElementById('cakePage');
@@ -250,88 +222,44 @@ if(cake){
   if(warn>=7){
     texts.forEach(e=>{
       e.classList.add('glitch','mid');
-      if(!e.dataset.text) e.dataset.text=e.innerText;
+      e.dataset.text=e.innerText;
     });
   }
   if(warn>=10){
     texts.forEach(e=>{
       e.classList.remove('mid');
       e.classList.add('high');
-      e.innerText=corruptText(e.innerText);
+      e.innerText=corrupt(e.innerText);
     });
   }
 }
 
 if(warn>=11){
   document.body.style.background='#000';
-  document.querySelectorAll('h1,p').forEach(e=>{
-    e.innerText=corruptText(e.innerText);
-  });
-}
-
-function make404(type){
-  const s=document.createElement('section');
-  s.className='page error';
-  if(type==='normal'){
-    s.innerHTML='<h1>404 NOT FOUND</h1><p>요청하신 페이지를 찾을 수 없습니다.</p>';
-  }
-  if(type==='corrupt'){
-    s.innerHTML='<h1 data-text="ERR_404_EAT">기록 일련번호: #ERR_404_EAT</h1><p>도망가십시오.<br>기록자는 사라졌습니다.</p>';
-    s.querySelectorAll('h1,p').forEach(e=>{
-      e.classList.add('glitch','mid');
-      e.dataset.text=e.innerText;
-    });
-  }
-  if(type==='warning'){
-    s.innerHTML='<h1>전임자 기록</h1><p>도망가<br>도망가<br>읽지 마<br>이미 늦었다</p>';
-    s.querySelectorAll('h1,p').forEach(e=>{
-      e.classList.add('glitch','high');
-      e.dataset.text=e.innerText;
-      e.innerText=corruptText(e.innerText);
-    });
-  }
-  return s;
-}
-
-if(warn>=5&&warn<=10){
-  let t='normal';
-  if(warn>=8) t='corrupt';
-  if(warn>=10) t='warning';
-  pages.appendChild(make404(t));
-}
-
-  <script>
-function corrupt(t){
-  const p='뷁쉚뎛갿됵괡훍믃궳렢쬻삷텱';
-  return t.split('').map(c=>Math.random()<0.5?p[Math.floor(Math.random()*p.length)]:c).join('');
-}
-
-if(warn>=11){
   const chaos=document.createElement('div');
   chaos.className='chaos';
   document.body.appendChild(chaos);
 
-  const baseTexts=[];
+  const base=[];
   document.querySelectorAll('h1,p').forEach(e=>{
-    baseTexts.push(e.innerText);
+    base.push(e.innerText);
     e.innerText=corrupt(e.innerText);
   });
 
   setInterval(()=>{
-    for(let i=0;i<12;i++){
+    for(let i=0;i<14;i++){
       const s=document.createElement('span');
-      const txt=baseTexts[Math.floor(Math.random()*baseTexts.length)];
-      s.innerText=corrupt(txt+txt);
+      const t=base[Math.floor(Math.random()*base.length)];
+      s.innerText=corrupt(t+t);
       s.style.left=Math.random()*100+'%';
       s.style.top=Math.random()*100+'%';
-      s.style.fontSize=(12+Math.random()*28)+'px';
+      s.style.fontSize=(12+Math.random()*30)+'px';
       s.style.animationDuration=(0.4+Math.random()*1.2)+'s';
       chaos.appendChild(s);
       setTimeout(()=>s.remove(),1500);
     }
   },120);
 }
-
 </script>
 </body>
 </html>
