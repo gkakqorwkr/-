@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>한아동 시설 안내</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:'Nanum Myeongjo','Batang',serif;
+  color:#243333;
+}
+
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:url('background.png') center/cover no-repeat;
+  opacity:.18;
+  filter:blur(2px);
+  z-index:-2;
+}
+
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:#eaf6fb;
+  opacity:.85;
+  z-index:-1;
+}
+
+#pages{
+  display:flex;
+  width:100%;
+  height:100%;
+  transition:transform .45s ease;
+}
+
+.page{
+  min-width:100%;
+  height:100%;
+  box-sizing:border-box;
+  padding:56px 26px 120px;
+}
+
+h1{
+  font-size:34px;
+  font-weight:700;
+  margin-bottom:18px;
+}
+
+h2{
+  font-size:24px;
+  margin-bottom:14px;
+  color:#5b6b6a;
+}
+
+p{
+  font-size:16px;
+  line-height:1.9;
+  margin:10px 0;
+}
+
+.fade{
+  opacity:.55;
+}
+
+img.hero{
+  width:100%;
+  max-width:520px;
+  display:block;
+  margin:28px auto;
+  border:1px solid rgba(0,0,0,.15);
+}
+
+.box{
+  border:1px solid rgba(91,107,106,.35);
+  background:rgba(255,255,255,.65);
+  padding:22px;
+}
+
+.footer{
+  margin-top:40px;
+  font-size:13px;
+  opacity:.5;
+}
+</style>
+</head>
+
+<body>
+
+<div id="pages">
+
+<section class="page">
+  <h1>한아동 시설 안내</h1>
+  <p class="fade">Hanadong Facilities Information</p>
+
+  <img src="facilities-main.png" class="hero">
+
+  <div class="box">
+    <p>
+      본 문서는 한아동 내 시설에 대한 기본 정보를 제공합니다.<br>
+      시설의 위치, 운영 상태, 목적은 고정되어 있지 않을 수 있습니다.
+    </p>
+    <p class="fade">
+      일부 시설은 인식되지 않거나, 표시되지 않을 수 있습니다.
+    </p>
+  </div>
+</section>
+
+<section class="page">
+  <h2>경민 아파트</h2>
+  <div class="box">
+    <p>
+      경민 아파트는 한아동 내 유일한 공동 주거 시설입니다.<br>
+      동일한 구조의 세대가 반복적으로 배치되어 있습니다.
+    </p>
+    <p>
+      거주 인원과 실제 사용 여부는 확인되지 않습니다.
+    </p>
+    <p class="fade">
+      외형상 변화는 드물지만 내부 구조는 일정하지 않을 수 있습니다.
+    </p>
+  </div>
+</section>
+
+<section class="page">
+  <h2>은정 슈퍼</h2>
+  <div class="box">
+    <p>
+      은정 슈퍼는 생활 필수품을 취급합니다.<br>
+      진열된 물품은 항상 동일하지 않습니다.
+    </p>
+    <p>
+      구매 기록은 남지 않을 수 있습니다.
+    </p>
+    <p class="fade">
+      계산 절차는 생략될 수 있으며, 이용에 문제는 없습니다.
+    </p>
+  </div>
+</section>
+
+<section class="page">
+  <h2>영소 미용실</h2>
+  <div class="box">
+    <p>
+      영소 미용실은 개인 관리 시설로 분류됩니다.<br>
+      운영 시간은 명확히 정해져 있지 않습니다.
+    </p>
+    <p>
+      내부에 대기 인원이 없더라도 이용이 가능합니다.
+    </p>
+    <p class="fade">
+      거울의 반사는 실제와 다를 수 있습니다.
+    </p>
+  </div>
+</section>
+
+<section class="page">
+  <h2>원예 세탁소</h2>
+  <div class="box">
+    <p>
+      원예 세탁소는 세탁과 원예 업무를 겸합니다.<br>
+      두 기능은 명확히 구분되지 않습니다.
+    </p>
+    <p>
+      맡긴 물품은 회수되지 않을 수 있습니다.
+    </p>
+    <p class="fade">
+      식물의 상태 변화는 정상 범주로 간주됩니다.
+    </p>
+  </div>
+</section>
+
+<section class="page">
+  <h2>맑음 제과</h2>
+  <div class="box">
+    <p>
+      맑음 제과는 제과 제조 및 배포 시설입니다.<br>
+      제품 구성은 내부 기준에 따라 변경됩니다.
+    </p>
+    <p>
+      일부 제품은 기록에 남지 않습니다.
+    </p>
+    <p class="fade">
+      모든 절차는 정상적으로 처리됩니다.
+    </p>
+  </div>
+</section>
+
+<section class="page">
+  <h2>시설 이용 참고</h2>
+  <div class="box">
+    <p>
+      모든 시설은 동시에 이용 가능하지 않을 수 있습니다.<br>
+      이용 제한이 표시되지 않을 수 있습니다.
+    </p>
+    <p class="fade">
+      불편함은 대부분 일시적입니다.<br>
+      별도의 조치는 필요하지 않습니다.
+    </p>
+  </div>
+
+  <div class="footer">
+    본 안내서는 자동으로 갱신되지 않습니다.
+  </div>
+</section>
+
+</div>
+
+<script>
+let index=0,startX=0;
+const pages=document.getElementById('pages');
+
+document.addEventListener('touchstart',e=>startX=e.touches[0].clientX);
+document.addEventListener('touchend',e=>{
+  const d=e.changedTouches[0].clientX-startX;
+  if(d<-40&&index<pages.children.length-1)index++;
+  if(d>40&&index>0)index--;
+  pages.style.transform=`translateX(-${index*100}%)`;
+});
+</script>
+
+</body>
+</html>
