@@ -139,9 +139,9 @@ if(savedSlot !== String(slot) || !weather){
   localStorage.setItem('hanadong_weather_slot', slot);
 }
 
-if(visit >= 7){
-  document.getElementById('noticeBox').innerText =
-  '본 시스템은 정상적으로 운영 중입니다.\n별도의 조치는 필요하지 않습니다.';
+if(v % 7 === 0){
+  document.querySelector('.notice').innerText =
+    '본 시스템은 정상적으로 운영 중입니다.\n별도의 조치는 필요하지 않습니다.';
 }
 
 if(visit >= 12){
