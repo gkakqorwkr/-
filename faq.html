@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>자주 묻는 질문</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  background:#eef7fb;
+  font-family:'Nanum Myeongjo','Batang',serif;
+  color:#243333;
+}
+
+.wrap{
+  max-width:760px;
+  margin:0 auto;
+  padding:56px 24px 120px;
+}
+
+h1{
+  font-size:32px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.sub{
+  font-size:14px;
+  opacity:.6;
+  margin-bottom:36px;
+}
+
+.section-title{
+  font-size:20px;
+  margin:40px 0 16px;
+  color:#5b6b6a;
+}
+
+.box{
+  border:1px solid rgba(91,107,106,.35);
+  background:rgba(255,255,255,.7);
+  padding:20px;
+  margin-bottom:18px;
+}
+
+.q{
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+.a{
+  font-size:15px;
+  line-height:1.8;
+}
+
+.user-q{
+  font-size:15px;
+  margin-bottom:8px;
+}
+
+.user-a{
+  font-size:14px;
+  line-height:1.7;
+  margin-top:6px;
+}
+
+.unanswered{
+  opacity:.18;
+  filter:blur(5px);
+}
+
+textarea,input{
+  width:100%;
+  box-sizing:border-box;
+  font-family:inherit;
+  font-size:15px;
+  padding:10px;
+  margin-bottom:10px;
+  border:1px solid rgba(0,0,0,.2);
+  background:#fff;
+}
+
+button{
+  font-family:inherit;
+  padding:10px 16px;
+  border:1px solid rgba(0,0,0,.3);
+  background:#fff;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#eee;
+}
+
+.admin{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px dashed rgba(0,0,0,.2);
+}
+
+.footer{
+  margin-top:60px;
+  font-size:12px;
+  opacity:.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<h1>자주 묻는 질문</h1>
+<div class="sub">Hanadong Frequently Asked Questions</div>
+
+<div class="section-title">공식 안내</div>
+
+<div class="faq">
+  <div class="q">Q. 한아동은 실제로 존재하는 곳인가요?</div>
+  <div class="a">
+    본 시스템은 한아동 관련 정보를 제공합니다.<br>
+    실제 여부에 대한 확인은 제공되지 않습니다.
+  </div>
+</div>
+
+<div class="faq">
+  <div class="q">Q. 출입 시간에 제한이 있나요?</div>
+  <div class="a">
+    출입 시간은 제한되지 않습니다.<br>
+    다만 모든 출입이 기록되지는 않습니다.
+  </div>
+</div>
+
+<div class="faq">
+  <div class="q">Q. 지도에 표시되지 않은 건물은 무엇인가요?</div>
+  <div class="a">
+    표시되지 않은 시설은 이용 대상이 아닐 수 있습니다.<br>
+    별도의 안내는 제공되지 않습니다.
+  </div>
+</div>
+
+<div class="faq">
+  <div class="q">Q. 경민 아파트 지하에는 왜 들어가면 안 되나요?</div>
+  <div class="a">
+    해당 구역은 일반적인 이동 동선에 포함되지 않습니다.
+    <div class="fade">
+      기상 상태에 따라 예외가 발생할 수 있습니다.
+    </div>
+  </div>
+</div>
+
+<div class="faq">
+  <div class="q">Q. 시설 운영 시간이 일정하지 않은 이유는 무엇인가요?</div>
+  <div class="a">
+    운영 시간은 내부 기준에 따라 변동됩니다.<br>
+    기준은 공개되지 않습니다.
+  </div>
+</div>
+
+<div class="faq">
+  <div class="q">Q. 비 오는 날에만 보이는 시설이 있나요?</div>
+  <div class="a">
+    일부 시설은 특정 조건에서만 식별 가능합니다.
+    <div class="fade">
+      해당 조건은 고정되어 있지 않습니다.
+    </div>
+  </div>
+</div>
+
+<div class="faq">
+  <div class="q">Q. 안내 문구가 흐릿하게 보이는 이유는 무엇인가요?</div>
+  <div class="a">
+    중요하지 않은 정보는 강조되지 않습니다.<br>
+    모든 문구를 확인할 필요는 없습니다.
+  </div>
+</div>
+
+<div class="faq">
+  <div class="q">Q. 오류를 발견했는데 신고하면 반영되나요?</div>
+  <div class="a">
+    오류 신고는 접수될 수 있습니다.<br>
+    반영 여부는 보장되지 않습니다.
+    
+<div class="section-title">질문 남기기</div>
+
+<div class="box">
+  <textarea id="questionInput" placeholder="질문을 입력하세요."></textarea>
+  <button onclick="addQuestion()">질문 남기기</button>
+</div>
+
+<div class="section-title">접수된 질문</div>
+<div id="questionList"></div>
+
+<div class="footer">
+  일부 질문은 즉시 확인되지 않을 수 있습니다.<br>
+  모든 질문에 답변이 제공되지는 않습니다.
+</div>
+
+</div>
+
+<script>
+const STORAGE_KEY = 'hanadong_questions';
+
+function loadQuestions(){
+  return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+}
+
+function saveQuestions(qs){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(qs));
+}
+
+function render(){
+  const list = document.getElementById('questionList');
+  list.innerHTML = '';
+  const qs = loadQuestions();
+
+  qs.forEach((item, i)=>{
+    const box = document.createElement('div');
+    box.className = 'box';
+
+    const q = document.createElement('div');
+    q.className = 'user-q';
+    q.innerText = 'Q. ' + item.q;
+
+    const a = document.createElement('div');
+    a.className = 'user-a';
+
+    if(item.a){
+      a.innerText = 'A. ' + item.a;
+    }else{
+      a.innerText = 'A. 아직 답변이 등록되지 않았습니다.';
+      a.classList.add('unanswered');
+    }
+
+    const admin = document.createElement('div');
+    admin.className = 'admin';
+
+    const input = document.createElement('input');
+    input.placeholder = '관리자 답변 입력';
+
+    const btn = document.createElement('button');
+    btn.innerText = '답변 등록';
+    btn.onclick = ()=>{
+      item.a = input.value;
+      saveQuestions(qs);
+      render();
+    };
+
+    admin.appendChild(input);
+    admin.appendChild(btn);
+
+    box.appendChild(q);
+    box.appendChild(a);
+    box.appendChild(admin);
+
+    list.appendChild(box);
+  });
+}
+
+function addQuestion(){
+  const input = document.getElementById('questionInput');
+  if(!input.value.trim()) return;
+  const qs = loadQuestions();
+  qs.unshift({ q: input.value, a: '' });
+  saveQuestions(qs);
+  input.value = '';
+  render();
+}
+
+render();
+</script>
+
+</body>
+</html>
